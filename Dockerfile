@@ -6,17 +6,14 @@ RUN apk add --no-cache ttf-dejavu
 
 # Download and install jetty (All versions: https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/)
 RUN \
-  JETTY_VERSION="8.0.1.v20110908" && \
+  JETTY_VERSION="9.3.8.v20160314" && \
   wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${JETTY_VERSION}/jetty-distribution-${JETTY_VERSION}.tar.gz && \
   tar -xzvf jetty-distribution-${JETTY_VERSION}.tar.gz && \
   rm -rf jetty-distribution-${JETTY_VERSION}.tar.gz && \
   mkdir -p /opt && \
   mv jetty-distribution-${JETTY_VERSION}/ /opt/jetty && \
-  rm -rf /opt/jetty/contexts/* && \
-  rm -rf /opt/jetty/contexts-available/* && \
-  rm -rf /opt/jetty/overlays/* && \
-  rm -rf /opt/jetty/contexts/* && \  
-  rm -rf /opt/jetty/webapps/* 
+  sed -ri 's/--module=home-base-warning/#--module=home-base-warning/g' /opt/jetty/start.ini && \
+  rm -rf /opt/jetty/demo-base
 
 # Configure Jetty user
 RUN \
