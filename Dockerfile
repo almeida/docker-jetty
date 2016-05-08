@@ -1,6 +1,9 @@
 FROM java:openjdk-8-jdk-alpine
 MAINTAINER Thyago Almeida <thyagoaa@gmail.com>
 
+# Install some fonts (some Java APIs requires it)
+RUN apk add --no-cache ttf-dejavu
+
 # Download and install jetty (All versions: https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/)
 RUN \
   JETTY_VERSION="8.0.1.v20110908" && \
