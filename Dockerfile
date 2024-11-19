@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk-alpine
+FROM eclipse-temurin:8-jdk-alpine
 MAINTAINER Thyago Almeida <thyagoaa@gmail.com>
 
 # Install some fonts (some Java APIs requires it)
